@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "description": "Just a little utility that Compares two configuration files and shows a difference.",
-  "main": "index.js",
+  "main": "bin/gendiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/SkyAjax/frontend-project-46#readme",
   "dependencies": {
-    "commander": "^9.4.1"
+    "commander": "^9.4.1",
+    "lodash": "^4.17.21"
   }
 }
