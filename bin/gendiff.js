@@ -1,8 +1,9 @@
 #!/usr/bin/env node
+/* eslint-disable import/extensions, no-console */
 
 import { program } from 'commander';
-import genDiff from '../src/gendiff_engine.js';
 import path from 'path';
+import genDiff from '../src/gendiff_engine.js';
 
 program
   .description('Compares two configuration files and shows a difference.')
@@ -13,6 +14,6 @@ program
     const absPath1 = path.resolve(process.cwd(), filepath1);
     const absPath2 = path.resolve(process.cwd(), filepath2);
     genDiff(absPath1, absPath2);
-  })
+  });
 
 program.parse();
