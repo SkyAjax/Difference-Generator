@@ -36,6 +36,7 @@ const genDiff = (json1, json2) => {
   });
   result += '}';
   console.log(result);
+  return result;
 };
 
 export default genDiff;
