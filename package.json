@@ -5,7 +5,7 @@
   "description": "Just a little utility that Compares two configuration files and shows a difference.",
   "main": "bin/gendiff.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "bin": {
     "gendiff": "bin/gendiff.js"
