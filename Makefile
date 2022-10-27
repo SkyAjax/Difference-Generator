@@ -21,3 +21,6 @@ json:
 
 yaml: 
 	gendiff __fixtures__/file1.yaml __fixtures__/file2.yml
+
+asciinema:
+	asciinema rec
