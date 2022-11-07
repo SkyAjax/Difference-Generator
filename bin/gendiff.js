@@ -13,7 +13,7 @@ program
   .action((filepath1, filepath2) => {
     const absPath1 = path.resolve(process.cwd(), filepath1);
     const absPath2 = path.resolve(process.cwd(), filepath2);
-    genDiff(absPath1, absPath2);
+    console.log(genDiff(absPath1, absPath2));
   });
 
 program.parse();
