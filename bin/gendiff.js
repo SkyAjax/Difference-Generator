@@ -4,6 +4,7 @@
 import { program } from 'commander';
 import path from 'path';
 import genDiff from '../src/gendiff_engine.js';
+import stylish from '../src/stylish.js';
 
 program
   .description('Compares two configuration files and shows a difference.')
@@ -13,7 +14,7 @@ program
   .action((filepath1, filepath2) => {
     const absPath1 = path.resolve(process.cwd(), filepath1);
     const absPath2 = path.resolve(process.cwd(), filepath2);
-    console.log(genDiff(absPath1, absPath2));
+    console.log(stylish(genDiff(absPath1, absPath2)));
   });
 
 program.parse();
