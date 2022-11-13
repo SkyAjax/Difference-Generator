@@ -8,9 +8,9 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
 test('gendiff.json', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toEqual(result);
+  expect((genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'stylish'))).toEqual(result);
 });
 
 test('gendiff.yaml', () => {
-  expect(genDiff(getFixturePath('file1.yaml'), getFixturePath('file2.yml'))).toEqual(result);
+  expect((genDiff(getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'stylish'))).toEqual(result);
 });

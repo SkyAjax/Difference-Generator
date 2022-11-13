@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 import parse from './parsers.js';
 import stylish from './stylish.js';
 
-const genDiff = (file1, file2) => {
+const buildTree = (file1, file2) => {
   const file1Data = readFileSync(file1);
   const file2Data = readFileSync(file2);
   const parsedFile1 = parse(file1Data, path.extname(file1));
@@ -39,4 +39,12 @@ const genDiff = (file1, file2) => {
   return iter(parsedFile1, parsedFile2, 1);
 };
 
-export default genDiff;
+const gendiff = (file1, file2, format) => {
+  const tree = buildTree(file1, file2);
+  if (format === 'stylish') {
+    return stylish(tree);
+  }
+  return 'Unexpected style format';
+};
+
+export default gendiff;
