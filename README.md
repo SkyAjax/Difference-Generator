@@ -18,3 +18,6 @@ Comparing plain YAML files
 
 Comparing nested JSON files with stylish representation
 ##### Demonstration: [![asciicast](https://asciinema.org/a/VSiTBqoDqG0cGYbvRZvPxEpb4.svg)](https://asciinema.org/a/VSiTBqoDqG0cGYbvRZvPxEpb4)
+
+Comparing nested JSON files with plain representation
+##### Demonstration: [![asciicast](https://asciinema.org/a/ygnXjYjhFD8ynlHSyClbrjvRS.svg)](https://asciinema.org/a/ygnXjYjhFD8ynlHSyClbrjvRS)

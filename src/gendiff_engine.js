@@ -4,7 +4,7 @@ import _ from 'lodash';
 import path from 'path';
 import { readFileSync } from 'node:fs';
 import parse from './parsers.js';
-import stylish from './stylish.js';
+import formatter from './formatters/index.js';
 
 const buildTree = (file1, file2) => {
   const file1Data = readFileSync(file1);
@@ -41,10 +41,7 @@ const buildTree = (file1, file2) => {
 
 const gendiff = (file1, file2, format) => {
   const tree = buildTree(file1, file2);
-  if (format === 'stylish') {
-    return stylish(tree);
-  }
-  return 'Unexpected style format';
+  return formatter(tree, format);
 };
 
 export default gendiff;

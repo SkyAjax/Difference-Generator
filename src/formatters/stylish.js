@@ -7,8 +7,8 @@ const sign = {
   nested: ' ',
 };
 
-const indent = (depth) => ' '.repeat((depth * 4) - 2);
-const bracketIndent = (depth) => ' '.repeat((depth * 4) - 4);
+const getIndent = (depth) => ' '.repeat((depth * 4) - 2);
+const getBracketIndent = (depth) => ' '.repeat((depth * 4) - 4);
 
 const stringify = (val, spacesCount) => {
   // console.log(val, spacesCount);
@@ -42,24 +42,24 @@ const stylish = (ast) => {
       // console.log(value)
       if (type === 'added') {
         // console.log(child);
-        return `${indent(depth)}${sign.added} ${key}: ${stringify(value, depth)}`;
+        return `${getIndent(depth)}${sign.added} ${key}: ${stringify(value, depth)}`;
         // console.log(result);
       } if (type === 'removed') {
         // console.log(child);
-        return `${indent(depth)}${sign.removed} ${key}: ${stringify(value, depth)}`;
+        return `${getIndent(depth)}${sign.removed} ${key}: ${stringify(value, depth)}`;
         // console.log(result);
       } if (type === 'changed') {
         // console.log(child);
         const [oldValue, newValue] = value;
-        return `${indent(depth)}${sign.removed} ${key}: ${stringify(oldValue, depth)}\n${indent(depth)}${sign.added} ${key}: ${stringify(newValue, depth)}`;
+        return `${getIndent(depth)}${sign.removed} ${key}: ${stringify(oldValue, depth)}\n${getIndent(depth)}${sign.added} ${key}: ${stringify(newValue, depth)}`;
         // console.log(result);
       } if (type === 'unchanged') {
         // console.log(child);
-        return `${indent(depth)}${sign.unchanged} ${key}: ${stringify(value, depth)}`;
+        return `${getIndent(depth)}${sign.unchanged} ${key}: ${stringify(value, depth)}`;
         // console.log(result);
       } if (type === 'nested') {
         // console.log(child);
-        return `${indent(depth)}${sign.nested} ${key}: ${iter(value, depth + 1)}`;
+        return `${getIndent(depth)}${sign.nested} ${key}: ${iter(value, depth + 1)}`;
         // console.log(result);
       }
       return 'Unexpected value';
@@ -67,7 +67,7 @@ const stylish = (ast) => {
     return [
       '{',
       ...lines,
-      `${bracketIndent(depth)}}`,
+      `${getBracketIndent(depth)}}`,
     ].join('\n');
   };
   return iter(ast, 1);
