@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "description": "Just a little utility that Compares two configuration files and shows a difference.",
-  "main": "bin/gendiff.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest"
   },
