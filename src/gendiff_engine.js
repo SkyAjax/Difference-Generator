@@ -15,7 +15,7 @@ const buildTree = (file1, file2) => {
         return { type: 'added', key, value: tree2[key] };
       }
       if (_.isObject(tree1[key]) && _.isObject(tree2[key])) {
-        return { type: 'nested', key, value: iter(tree1[key], tree2[key]) };
+        return { type: 'nested', key, children: iter(tree1[key], tree2[key]) };
       }
       if (tree1[key] !== tree2[key]) {
         return { type: 'changed', key, value: [tree1[key], tree2[key]] };

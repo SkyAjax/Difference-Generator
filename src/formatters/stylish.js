@@ -39,12 +39,13 @@ const stylish = (ast) => {
       } if (type === 'removed') {
         return `${getIndent(depth)}${signs.removed} ${key}: ${stringify(value, depth)}`;
       } if (type === 'changed') {
-        const [oldValue, newValue] = value;
-        return `${getIndent(depth)}${signs.removed} ${key}: ${stringify(oldValue, depth)}\n${getIndent(depth)}${signs.added} ${key}: ${stringify(newValue, depth)}`;
+        const [value1, value2] = value;
+        return `${getIndent(depth)}${signs.removed} ${key}: ${stringify(value1, depth)}\n${getIndent(depth)}${signs.added} ${key}: ${stringify(value2, depth)}`;
       } if (type === 'unchanged') {
         return `${getIndent(depth)}${signs.unchanged} ${key}: ${stringify(value, depth)}`;
       } if (type === 'nested') {
-        return `${getIndent(depth)}${signs.nested} ${key}: ${iter(value, depth + 1)}`;
+        const { children } = child;
+        return `${getIndent(depth)}${signs.nested} ${key}: ${iter(children, depth + 1)}`;
       }
       return 'Unexpected value';
     });

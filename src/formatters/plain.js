@@ -22,13 +22,14 @@ const plain = (ast) => {
         case 'removed':
           return `Property '${getPropertyName(properties, key)}' was removed`;
         case 'changed': {
-          const [oldValue, newValue] = value;
-          return `Property '${getPropertyName(properties, key)}' was updated. From ${getValue(oldValue)} to ${getValue(newValue)}`;
+          const [value1, value2] = value;
+          return `Property '${getPropertyName(properties, key)}' was updated. From ${getValue(value1)} to ${getValue(value2)}`;
         }
         case 'unchanged':
           return [];
         case 'nested': {
-          return iter(value, [...properties, key]);
+          const { children } = child;
+          return iter(children, [...properties, key]);
         }
         default:
           return "Can't define tree";
