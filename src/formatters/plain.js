@@ -15,7 +15,6 @@ const getPropertyName = (properties, key) => [...properties, key].join('.');
 const plain = (ast) => {
   const iter = (tree, properties) => {
     const lines = tree.map((child) => {
-    // console.log(properties);
       const { type, key, value } = child;
       switch (type) {
         case 'added':

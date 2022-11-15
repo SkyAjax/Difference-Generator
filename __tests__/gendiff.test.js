@@ -1,8 +1,9 @@
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import genDiff from '../src/gendiff_engine.js';
+import genDiff from '../src/index.js';
 import stylishResult from '../__fixtures__/stylish_result.js';
 import plainResult from '../__fixtures__/plain_result.js';
+import jsonResult from '../__fixtures__/json_result.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,4 +23,12 @@ test('plain json', () => {
 
 test('plain yaml', () => {
   expect((genDiff(getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'plain'))).toEqual(plainResult);
+});
+
+test('json json', () => {
+  expect((genDiff(getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'json'))).toEqual(jsonResult);
+});
+
+test('json yaml', () => {
+  expect((genDiff(getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'json'))).toEqual(jsonResult);
 });

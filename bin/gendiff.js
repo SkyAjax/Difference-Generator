@@ -3,7 +3,7 @@
 
 import { program } from 'commander';
 import path from 'path';
-import genDiff from '../src/gendiff_engine.js';
+import genDiff from '../src/index.js';
 
 program
   .description('Compares two configuration files and shows a difference.')
