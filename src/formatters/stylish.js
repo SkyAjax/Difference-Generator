@@ -32,8 +32,8 @@ const stringify = (val, spacesCount) => {
 
 const stylish = (ast) => {
   const iter = (currentValue, depth) => {
-    const lines = currentValue.map((child) => {
-      const { type, key, value } = child;
+    const lines = currentValue.map((node) => {
+      const { type, key, value } = node;
       if (type === 'added') {
         return `${getIndent(depth)}${signs.added} ${key}: ${stringify(value, depth)}`;
       } if (type === 'removed') {
@@ -44,7 +44,7 @@ const stylish = (ast) => {
       } if (type === 'unchanged') {
         return `${getIndent(depth)}${signs.unchanged} ${key}: ${stringify(value, depth)}`;
       } if (type === 'nested') {
-        const { children } = child;
+        const { children } = node;
         return `${getIndent(depth)}${signs.nested} ${key}: ${iter(children, depth + 1)}`;
       }
       return 'Unexpected value';

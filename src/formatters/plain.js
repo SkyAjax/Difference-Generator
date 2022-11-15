@@ -14,8 +14,8 @@ const getPropertyName = (properties, key) => [...properties, key].join('.');
 
 const plain = (ast) => {
   const iter = (tree, properties) => {
-    const lines = tree.map((child) => {
-      const { type, key, value } = child;
+    const lines = tree.map((node) => {
+      const { type, key, value } = node;
       switch (type) {
         case 'added':
           return `Property '${getPropertyName(properties, key)}' was added with value: ${getValue(value)}`;
@@ -28,7 +28,7 @@ const plain = (ast) => {
         case 'unchanged':
           return [];
         case 'nested': {
-          const { children } = child;
+          const { children } = node;
           return iter(children, [...properties, key]);
         }
         default:
