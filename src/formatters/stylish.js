@@ -7,52 +7,52 @@ const signs = {
   nested: ' ',
 };
 
-const getIndent = (depth) => ' '.repeat((depth * 4) - 2);
-const getBracketIndent = (depth) => ' '.repeat((depth * 4) - 4);
+const getIndent = (depth, extraSpace = 0) => ' '.repeat((depth * 4) - extraSpace);
 
-const stringify = (val, spacesCount) => {
-  const iter = (currentValue, depth) => {
+const stringify = (val, depth) => {
+  const iter = (currentValue, innerDepth) => {
     if (!_.isObject(currentValue)) {
       return `${currentValue}`;
     }
-    const getInnerIndent = (innerDepth) => ' '.repeat((innerDepth * 4));
-    const getInnerBracketIndent = (innerDepth) => ' '.repeat((innerDepth * 4));
     const lines = Object
       .entries(currentValue)
-      .map(([key, value]) => `${getInnerIndent(depth + 1)}${key}: ${iter(value, depth + 1)}`);
+      .map(([key, value]) => `${getIndent(innerDepth + 1)}${key}: ${iter(value, innerDepth + 1)}`);
 
     return [
       '{',
       ...lines,
-      `${getInnerBracketIndent(depth)}}`,
+      `${getIndent(innerDepth)}}`,
     ].join('\n');
   };
-  return iter(val, spacesCount);
+  return iter(val, depth);
 };
 
 const stylish = (ast) => {
   const iter = (currentValue, depth) => {
     const lines = currentValue.map((node) => {
-      const { type, key, value } = node;
+      const { type } = node;
       if (type === 'added') {
-        return `${getIndent(depth)}${signs.added} ${key}: ${stringify(value, depth)}`;
+        const { key, value } = node;
+        return `${getIndent(depth, 2)}${signs.added} ${key}: ${stringify(value, depth)}`;
       } if (type === 'removed') {
-        return `${getIndent(depth)}${signs.removed} ${key}: ${stringify(value, depth)}`;
+        const { key, value } = node;
+        return `${getIndent(depth, 2)}${signs.removed} ${key}: ${stringify(value, depth)}`;
       } if (type === 'changed') {
-        const [value1, value2] = value;
-        return `${getIndent(depth)}${signs.removed} ${key}: ${stringify(value1, depth)}\n${getIndent(depth)}${signs.added} ${key}: ${stringify(value2, depth)}`;
+        const { key, value1, value2 } = node;
+        return `${getIndent(depth, 2)}${signs.removed} ${key}: ${stringify(value1, depth)}\n${getIndent(depth, 2)}${signs.added} ${key}: ${stringify(value2, depth)}`;
       } if (type === 'unchanged') {
-        return `${getIndent(depth)}${signs.unchanged} ${key}: ${stringify(value, depth)}`;
+        const { key, value } = node;
+        return `${getIndent(depth)}${key}: ${stringify(value, depth)}`;
       } if (type === 'nested') {
-        const { children } = node;
-        return `${getIndent(depth)}${signs.nested} ${key}: ${iter(children, depth + 1)}`;
+        const { key, children } = node;
+        return `${getIndent(depth, 2)}${signs.nested} ${key}: ${iter(children, depth + 1)}`;
       }
       return 'Unexpected value';
     });
     return [
       '{',
       ...lines,
-      `${getBracketIndent(depth)}}`,
+      `${getIndent(depth, 4)}}`,
     ].join('\n');
   };
   return iter(ast, 1);

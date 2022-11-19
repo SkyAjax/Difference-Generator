@@ -1,11 +1,11 @@
 import yaml from 'js-yaml';
 
-const parse = (filePath, fileExt) => {
-  if (fileExt === '.json') {
-    return JSON.parse(filePath);
+const parse = (data, fileExt) => {
+  if (fileExt.endsWith('json')) {
+    return JSON.parse(data);
   }
-  if (fileExt === '.yaml' || fileExt === '.yml') {
-    return yaml.load(filePath);
+  if (fileExt.endsWith('yaml') || fileExt.endsWith('yml')) {
+    return yaml.load(data);
   }
   return 'Unsupported file format';
 };

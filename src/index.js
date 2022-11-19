@@ -1,16 +1,18 @@
 import path from 'path';
-import { readFileSync } from 'node:fs';
+import fs from 'fs';
 import parse from './parsers.js';
 import formatter from './formatters/index.js';
-import buildTree from './gendiff_engine.js';
+import buildTree from './buildTree.js';
 
-const gendiff = (file1, file2, format = 'stylish') => {
-  const file1Data = readFileSync(file1);
-  const file2Data = readFileSync(file2);
-  const parsedFile1 = parse(file1Data, path.extname(file1));
-  const parsedFile2 = parse(file2Data, path.extname(file2));
-  const tree = buildTree(parsedFile1, parsedFile2);
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
+  const absPath1 = path.resolve(process.cwd(), filepath1);
+  const absPath2 = path.resolve(process.cwd(), filepath2);
+  const data1 = fs.readFileSync(absPath1);
+  const data2 = fs.readFileSync(absPath2);
+  const parsedData1 = parse(data1, path.extname(filepath1));
+  const parsedData2 = parse(data2, path.extname(filepath2));
+  const tree = buildTree(parsedData1, parsedData2);
   return formatter(tree, format);
 };
 
-export default gendiff;
+export default genDiff;

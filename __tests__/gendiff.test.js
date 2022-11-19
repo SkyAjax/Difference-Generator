@@ -9,26 +9,30 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-test('stylish json', () => {
-  expect((genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'stylish'))).toEqual(stylishResult);
+test.each([
+  [getFixturePath('file1.json'), getFixturePath('file2.json')],
+  [getFixturePath('file1.yaml'), getFixturePath('file2.yml')],
+])('default', (data1, data2, format = 'stylish', expected = stylishResult) => {
+  expect(genDiff(data1, data2, format)).toEqual(expected);
 });
 
-test('stylish yaml', () => {
-  expect((genDiff(getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'stylish'))).toEqual(stylishResult);
+test.each([
+  [getFixturePath('file1.json'), getFixturePath('file2.json'), 'stylish', stylishResult],
+  [getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'stylish', stylishResult],
+])('stylish', (data1, data2, format = 'stylish', expected = stylishResult) => {
+  expect(genDiff(data1, data2, format)).toEqual(expected);
 });
 
-test('plain json', () => {
-  expect((genDiff(getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'plain'))).toEqual(plainResult);
+test.each([
+  [getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain', plainResult],
+  [getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'plain', plainResult],
+])('plain', (data1, data2, format = 'stylish', expected = stylishResult) => {
+  expect(genDiff(data1, data2, format)).toEqual(expected);
 });
 
-test('plain yaml', () => {
-  expect((genDiff(getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'plain'))).toEqual(plainResult);
-});
-
-test('json json', () => {
-  expect((genDiff(getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'json'))).toEqual(jsonResult);
-});
-
-test('json yaml', () => {
-  expect((genDiff(getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'json'))).toEqual(jsonResult);
+test.each([
+  [getFixturePath('file1.json'), getFixturePath('file2.json'), 'json', jsonResult],
+  [getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'json', jsonResult],
+])('json', (data1, data2, format = 'stylish', expected = stylishResult) => {
+  expect(genDiff(data1, data2, format)).toEqual(expected);
 });

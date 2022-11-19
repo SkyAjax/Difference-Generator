@@ -1,4 +1,3 @@
-import json from './json.js';
 import plain from './plain.js';
 import stylish from './stylish.js';
 
@@ -9,9 +8,9 @@ const formatter = (tree, format) => {
     case 'plain':
       return plain(tree);
     case 'json':
-      return json(tree);
+      return JSON.stringify(tree);
     default:
-      return 'Unsupported output format';
+      throw new Error(`Unsupported output format: ${format}`);
   }
 };
 

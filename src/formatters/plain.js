@@ -15,20 +15,24 @@ const getPropertyName = (properties, key) => [...properties, key].join('.');
 const plain = (ast) => {
   const iter = (tree, properties) => {
     const lines = tree.map((node) => {
-      const { type, key, value } = node;
+      const { type } = node;
       switch (type) {
-        case 'added':
+        case 'added': {
+          const { key, value } = node;
           return `Property '${getPropertyName(properties, key)}' was added with value: ${getValue(value)}`;
-        case 'removed':
+        }
+        case 'removed': {
+          const { key } = node;
           return `Property '${getPropertyName(properties, key)}' was removed`;
+        }
         case 'changed': {
-          const [value1, value2] = value;
+          const { key, value1, value2 } = node;
           return `Property '${getPropertyName(properties, key)}' was updated. From ${getValue(value1)} to ${getValue(value2)}`;
         }
         case 'unchanged':
-          return [];
+          return null;
         case 'nested': {
-          const { children } = node;
+          const { key, children } = node;
           return iter(children, [...properties, key]);
         }
         default:
