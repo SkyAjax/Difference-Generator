@@ -1,6 +1,8 @@
 import yaml from 'js-yaml';
+import path from 'path';
 
-const parse = (data, fileExt) => {
+const parse = (data, filePath) => {
+  const fileExt = path.extname(filePath);
   if (fileExt.endsWith('json')) {
     return JSON.parse(data);
   }

@@ -47,7 +47,7 @@ const stylish = (ast) => {
         const { key, children } = node;
         return `${getIndent(depth, 2)}${signs.nested} ${key}: ${iter(children, depth + 1)}`;
       }
-      return 'Unexpected value';
+      throw new Error('Unexpected value');
     });
     return [
       '{',

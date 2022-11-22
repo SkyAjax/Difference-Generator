@@ -10,29 +10,16 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
 test.each([
-  [getFixturePath('file1.json'), getFixturePath('file2.json')],
-  [getFixturePath('file1.yaml'), getFixturePath('file2.yml')],
-])('default', (data1, data2, format = 'stylish', expected = stylishResult) => {
-  expect(genDiff(data1, data2, format)).toEqual(expected);
-});
-
-test.each([
-  [getFixturePath('file1.json'), getFixturePath('file2.json'), 'stylish', stylishResult],
-  [getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'stylish', stylishResult],
-])('stylish', (data1, data2, format = 'stylish', expected = stylishResult) => {
-  expect(genDiff(data1, data2, format)).toEqual(expected);
-});
-
-test.each([
-  [getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain', plainResult],
-  [getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'plain', plainResult],
-])('plain', (data1, data2, format = 'stylish', expected = stylishResult) => {
-  expect(genDiff(data1, data2, format)).toEqual(expected);
-});
-
-test.each([
-  [getFixturePath('file1.json'), getFixturePath('file2.json'), 'json', jsonResult],
-  [getFixturePath('file1.yaml'), getFixturePath('file2.yml'), 'json', jsonResult],
-])('json', (data1, data2, format = 'stylish', expected = stylishResult) => {
-  expect(genDiff(data1, data2, format)).toEqual(expected);
+  ['file1.json', 'file2.json'],
+  ['file1.yaml', 'file2.yml'],
+  ['file1.json', 'file2.json', 'stylish', stylishResult],
+  ['file1.yaml', 'file2.yml', 'stylish', stylishResult],
+  ['file1.json', 'file2.json', 'plain', plainResult],
+  ['file1.yaml', 'file2.yml', 'plain', plainResult],
+  ['file1.json', 'file2.json', 'json', jsonResult],
+  ['file1.yaml', 'file2.yml', 'json', jsonResult],
+])(('comparing %s, %s with %s output'), (file1, file2, format = 'stylish', expected = stylishResult) => {
+  const filePath1 = getFixturePath(file1);
+  const filePath2 = getFixturePath(file2);
+  expect(genDiff(filePath1, filePath2, format)).toEqual(expected);
 });

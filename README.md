@@ -4,17 +4,23 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c9783b49d02082d020e6/test_coverage)](https://codeclimate.com/github/SkyAjax/frontend-project-46/test_coverage)
 [![Node.js CI](https://github.com/SkyAjax/frontend-project-46/actions/workflows/node.js.yml/badge.svg)](https://github.com/SkyAjax/frontend-project-46/actions/workflows/node.js.yml)
 
-Comparing plain JSON files
-##### Demonstration: [![asciicast](https://asciinema.org/a/o2HsPXIPUJe3Sb2tcZLdIDc4j.svg)](https://asciinema.org/a/o2HsPXIPUJe3Sb2tcZLdIDc4j) 
+## How to install:
+Nothing fancy, just Node.js v.1 or higher. Then,
+1) Clone 
+` git clone git@github.com:SkyAjax/frontend-project-lvl46.git`
+2) Go to the project folder
+`cd frontend-project-lvl46`
+3) Install the package
+`make install`
 
-Comparing plain YAML files
-##### Demonstration: [![asciicast](https://asciinema.org/a/skbufBIKBfHJZcF09wBqHblAv.svg)](https://asciinema.org/a/skbufBIKBfHJZcF09wBqHblAv) 
+# Project description
+"Difference generator" is a small CLI program that compares two configuration files and shows a difference between them. You can choose following types of outputs:
 
-Comparing nested JSON files with stylish representation
+stylish - returns a tree view of the differences between files.
 ##### Demonstration: [![asciicast](https://asciinema.org/a/VSiTBqoDqG0cGYbvRZvPxEpb4.svg)](https://asciinema.org/a/VSiTBqoDqG0cGYbvRZvPxEpb4)
 
-Comparing nested JSON files with plain representation
+plain - returns a plain view of the differences between files with whole path of object key and its mutation.
 ##### Demonstration: [![asciicast](https://asciinema.org/a/ygnXjYjhFD8ynlHSyClbrjvRS.svg)](https://asciinema.org/a/ygnXjYjhFD8ynlHSyClbrjvRS)
 
-Comparing nested JSON files with json representation
+json - return a json.stringify function type view.
 ##### Demonstration: [![asciicast](https://asciinema.org/a/BXnibkIRp2GslfLiennmHGUnF.svg)](https://asciinema.org/a/BXnibkIRp2GslfLiennmHGUnF)
