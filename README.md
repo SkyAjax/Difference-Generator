@@ -5,7 +5,7 @@
 [![Node.js CI](https://github.com/SkyAjax/frontend-project-46/actions/workflows/node.js.yml/badge.svg)](https://github.com/SkyAjax/frontend-project-46/actions/workflows/node.js.yml)
 
 ## How to install:
-Nothing fancy, just Node.js v.1 or higher. Then,
+Make sure that you have Node.js v.16 or higher. Then,
 1) Clone 
 ` git clone git@github.com:SkyAjax/frontend-project-lvl46.git`
 2) Go to the project folder
@@ -16,11 +16,11 @@ Nothing fancy, just Node.js v.1 or higher. Then,
 # Project description
 "Difference generator" is a small CLI program that compares two configuration files and shows a difference between them. You can choose following types of outputs:
 
-stylish - returns a tree view of the differences between files.
+**stylish - returns a tree view of the differences between files.**
 ##### Demonstration: [![asciicast](https://asciinema.org/a/VSiTBqoDqG0cGYbvRZvPxEpb4.svg)](https://asciinema.org/a/VSiTBqoDqG0cGYbvRZvPxEpb4)
 
-plain - returns a plain view of the differences between files with whole path of object key and its mutation.
+**plain - returns a plain view of the differences between files with whole path of object key and its mutation.**
 ##### Demonstration: [![asciicast](https://asciinema.org/a/ygnXjYjhFD8ynlHSyClbrjvRS.svg)](https://asciinema.org/a/ygnXjYjhFD8ynlHSyClbrjvRS)
 
-json - return a json.stringify function type view.
+**json - return a json.stringify function type view.**
 ##### Demonstration: [![asciicast](https://asciinema.org/a/BXnibkIRp2GslfLiennmHGUnF.svg)](https://asciinema.org/a/BXnibkIRp2GslfLiennmHGUnF)
