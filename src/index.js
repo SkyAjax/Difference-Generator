@@ -8,8 +8,8 @@ const buildPath = (filepath) => path.resolve(process.cwd(), filepath);
 
 const getData = (absolutePath) => {
   const data = fs.readFileSync(absolutePath);
-  const fileExt = path.extname(absolutePath);
-  const parsedData = parse(data, fileExt.slice(1));
+  const fileFormat = path.extname(absolutePath);
+  const parsedData = parse(data, fileFormat.slice(1));
   return parsedData;
 };
 
