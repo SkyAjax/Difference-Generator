@@ -36,7 +36,7 @@ const plain = (ast) => {
           return iter(children, [...properties, key]);
         }
         default:
-          throw new Error("Can't define type");
+          throw new Error(`Can't define type: ${type}`);
       }
     });
     const filtered = lines.filter((child) => child);

@@ -10,8 +10,8 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
 test.each([
-  ['file1.json', 'file2.json'],
-  ['file1.yaml', 'file2.yml'],
+  ['file1.json', 'file2.json', undefined, stylishResult],
+  ['file1.yaml', 'file2.yml', undefined, stylishResult],
   ['file1.json', 'file2.json', 'stylish', stylishResult],
   ['file1.yaml', 'file2.yml', 'stylish', stylishResult],
   ['file1.json', 'file2.json', 'plain', plainResult],

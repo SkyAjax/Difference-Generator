@@ -6,18 +6,19 @@ import buildTree from './buildTree.js';
 
 const buildPath = (filepath) => path.resolve(process.cwd(), filepath);
 
-const readFile = (absolutePath) => {
+const getData = (absolutePath) => {
   const data = fs.readFileSync(absolutePath);
-  const parsedData = parse(data, absolutePath);
+  const fileExt = path.extname(absolutePath);
+  const parsedData = parse(data, fileExt.slice(1));
   return parsedData;
 };
 
 const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const absolutePath1 = buildPath(filepath1);
   const absolutePath2 = buildPath(filepath2);
-  const parsedData1 = readFile(absolutePath1);
-  const parsedData2 = readFile(absolutePath2);
-  const tree = buildTree(parsedData1, parsedData2);
+  const data1 = getData(absolutePath1);
+  const data2 = getData(absolutePath2);
+  const tree = buildTree(data1, data2);
   return formatter(tree, format);
 };
 

@@ -1,12 +1,5 @@
 import _ from 'lodash';
 
-const signs = {
-  unchanged: ' ',
-  added: '+',
-  removed: '-',
-  nested: ' ',
-};
-
 const getIndent = (depth, extraSpace = 0) => ' '.repeat((depth * 4) - extraSpace);
 
 const stringify = (val, depth) => {
@@ -33,19 +26,19 @@ const stylish = (ast) => {
       const { type } = node;
       if (type === 'added') {
         const { key, value } = node;
-        return `${getIndent(depth, 2)}${signs.added} ${key}: ${stringify(value, depth)}`;
+        return `${getIndent(depth, 2)}+ ${key}: ${stringify(value, depth)}`;
       } if (type === 'removed') {
         const { key, value } = node;
-        return `${getIndent(depth, 2)}${signs.removed} ${key}: ${stringify(value, depth)}`;
+        return `${getIndent(depth, 2)}- ${key}: ${stringify(value, depth)}`;
       } if (type === 'changed') {
         const { key, value1, value2 } = node;
-        return `${getIndent(depth, 2)}${signs.removed} ${key}: ${stringify(value1, depth)}\n${getIndent(depth, 2)}${signs.added} ${key}: ${stringify(value2, depth)}`;
+        return `${getIndent(depth, 2)}- ${key}: ${stringify(value1, depth)}\n${getIndent(depth, 2)}+ ${key}: ${stringify(value2, depth)}`;
       } if (type === 'unchanged') {
         const { key, value } = node;
         return `${getIndent(depth)}${key}: ${stringify(value, depth)}`;
       } if (type === 'nested') {
         const { key, children } = node;
-        return `${getIndent(depth, 2)}${signs.nested} ${key}: ${iter(children, depth + 1)}`;
+        return `${getIndent(depth, 2)}  ${key}: ${iter(children, depth + 1)}`;
       }
       throw new Error('Unexpected value');
     });
